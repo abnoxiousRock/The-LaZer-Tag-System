@@ -35,6 +35,11 @@ app.get("/scores", function (req, res) {
     res.end(JSON.stringify(scoreboard));
 });
 
+app.post("/", function(req, res) {
+    console.log("Post received, time to start game");
+    res.send();
+});
+
 app.listen(3000, function () {
     console.log("Server is running on localhost3000");
 });
