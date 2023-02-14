@@ -1,2 +1,6 @@
 photon-main/
 .DS_Store
+server-root/node_modules/
+server-root/package-lock.json
+server-root/package.json
+logo.jpg

@@ -21,7 +21,7 @@
     <div class="container d-flex align-items-center justify-content-center">
       <img class="img-fluid" id="splashscreen" src="logo.png">
       <div class="container" id="scoreboard" style="display:none;">
-        <form action="/" method="get" >
+        <form id="myForm" action="/" method="post" >
 
           <div class="row">  
             <div class="col-6 text-right text-danger">
@@ -55,7 +55,7 @@
 
           <br>
           <div class="row justify-content-end">
-            <input class="btn btn-primary mx-3" type="submit" formmethod="post" value="This button needs and event listener to preventDefault() and post scoreboard to server without page reload">
+            <input class="btn btn-primary mx-3" type="submit" formmethod="post" value="will send scoreboard to server as JSON without page reload">
           </div>
 
         </form>

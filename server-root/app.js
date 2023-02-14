@@ -1,11 +1,10 @@
 const express = require("express");
 const dgram = require('dgram');
 const classes = require('./classes');
-const { json } = require("express");
-const { HitEvent } = require("./classes");
 
 const app = express();
 app.use(express.static('public'));
+app.use(express.json());
 
 const socket = dgram.createSocket('udp4');
 socket.on('listening', () => {
@@ -18,10 +17,12 @@ socket.on('error', (err) => {
 });
 
 socket.on('message', (msg, rinfo) => {
-
-    let hitEvent = new classes.HitEvent(parseInt(msg.toString('utf-8', 0, 1)), parseInt(msg.toString('utf-8', 2, 3)));
+    let messageLength = msg.length;
+    let stringMessage = msg.toString('utf-8');
+    let playerIdArray = stringMessage.split(':');
+    let hitEvent = new classes.HitEvent(parseInt(playerIdArray[0]), parseInt(playerIdArray[1]));
     scoreboard.addHitEvent(hitEvent);
-    console.log(scoreboard.getRecentHitEvents(5));
+    console.log('player ' + playerIdArray[0] + ' hit player ' + playerIdArray[1]);
 });
 
 //Front end website get call
@@ -37,6 +38,8 @@ app.get("/scores", function (req, res) {
 
 app.post("/", function(req, res) {
     console.log("Post received, time to start game");
+    console.log(req.body);
+    //need to send success response message or just use 200 okay code?
     res.send();
 });
 
