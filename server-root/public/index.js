@@ -28,6 +28,7 @@ function handleFormStartGame(event) {
 function handleFormRegister(event) {
     event.preventDefault();
     register();
+    resetFields();
 }
 
 let register = function () {
@@ -47,8 +48,15 @@ let register = function () {
     let xhr = new XMLHttpRequest()
     xhr.open('POST', url, true)
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
-    xhr.send(post);
+    xhr.send(post)     
 }
+
+let resetFields = function () {
+    document.getElementById('newId').value = "";
+    document.getElementById('fName').value = "";
+    document.getElementById('lName').value = "";
+    document.getElementById('nName').value = "";
+} 
 
 let startGame = function () {
     let post = JSON.stringify({'data':['replace','with','scoreboard','playerIds','etc']});
