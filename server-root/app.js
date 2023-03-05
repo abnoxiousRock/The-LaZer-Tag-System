@@ -92,11 +92,7 @@ app.post("/register", function (req, res) {
 
 app.post("/", function (req, res) {
     console.log("Post received, time to start game");
-    console.log(req.body);
-    console.log('scoreboard before: ');
-    console.log(scoreboard);
     scoreboard = req.body;
-    console.log('scoreboard after: ');
     console.log(scoreboard);
     res.send();
 });
