@@ -19,10 +19,31 @@ window.onload = function() {
     form.addEventListener('submit', handleFormStartGame);
     form = document.getElementById('regPlayer');
     form.addEventListener('submit', handleFormRegister);
+
+    for (let i = 1; i <= NUMPLAYERS; i++) {
+        tempString = 'id';
+        tempString += i;
+        let elem = document.getElementById(tempString);
+        elem.value = '';
+        elem.addEventListener("input", getNickname);
+        elem = document.getElementById('nickname' + i);
+        elem.disabled = true;
+        elem.value = '';
+    }
 }
 
 function handleFormStartGame(event) {
     event.preventDefault();
+
+    for (let i = 1; i <= NUMPLAYERS; i++) {
+        let elem = document.getElementById('id' + i);
+        let elem2 = document.getElementById('nickname' + i);
+        if (elem.value !== '' && elem2.value === '') {
+            alert('Nickname required for ID: ' + elem.value);
+            return;
+        }
+    }
+
     startGame();
     //function to disable form/button and prevent further changes and 
     //syncs with the remote nickname database (form = disabled?)
@@ -59,21 +80,30 @@ let register = function () {
     xhr.send(post)     
 }
 
-let getNickname = function (id) {
-    // let get = JSON.stringify({'data': id});
+let getNickname = function (e) {
+    let id = e.target.value;
     let url = '/nickname?id=' + id;
     let xhr = new XMLHttpRequest();
+    let nName = '';
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var returnData = JSON.parse(this.responseText);
             if (returnData.length === 0) {
-                return '';
+                nName = '';
             }
             else 
             {
-                return returnData[0].codename;
+                nName = returnData[0].codename;
             }
+        }
+        let elem2 = document.getElementById('nickname' + e.target.id.substring(2));
+        elem2.value = nName;
+        if (elem2.value !== '') {
+            elem2.disabled = true;
+        }
+        else {
+            elem2.disabled = false;
         }
     };
 
@@ -97,8 +127,11 @@ let startGame = function () {
         tempString += i;
         let elem = document.getElementById(tempString);
         let id = elem.value;
-        let tempPlayer = new PlayerEntry(id, NUMPOINTSTOSTART);
-        scoreboard.addPlayerEntry(tempPlayer);
+        elem = document.getElementById('nickname' + i);
+        if (id !== '') {
+            let tempPlayer = new PlayerEntry(id, elem.value, NUMPOINTSTOSTART);
+            scoreboard.addPlayerEntry(tempPlayer);
+        }
     }
 
     let post = JSON.stringify(scoreboard);
@@ -112,8 +145,9 @@ let startGame = function () {
 // CLASSES 
 
 class PlayerEntry {
-    constructor(id, numPoints) {
+    constructor(id, nickname, numPoints) {
         this.id = id;
+        this.nickname = nickname;
         this.numPoints = numPoints;
     }
 }

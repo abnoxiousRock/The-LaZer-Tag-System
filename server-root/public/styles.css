@@ -5,3 +5,8 @@ body {
 .myclass {
     font-weight: 500;
 }
+
+input[type="text"]:disabled{
+    background-color:rgb(221, 221, 221);
+    color: black;
+}

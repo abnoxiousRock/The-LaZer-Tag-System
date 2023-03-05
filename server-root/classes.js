@@ -1,7 +1,8 @@
 module.exports = {
     PlayerEntry : class {
-        constructor(id, numPoints) {
+        constructor(id, nickname, numPoints) {
             this.id = id;
+            this.nickname = nickname;
             this.numPoints = numPoints;
         }
     },
