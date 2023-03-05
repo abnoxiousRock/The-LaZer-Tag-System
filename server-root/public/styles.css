@@ -5,3 +5,18 @@ body {
 .myclass {
     font-weight: 500;
 }
+
+input[type="text"]:disabled{
+    background-color:rgb(221, 221, 221);
+    color: black;
+    border-radius: 2px;
+    border-style:solid;
+}
+
+.px60w {
+    max-width: 60px;
+}
+
+.px300w {
+    min-width: 300px;
+}

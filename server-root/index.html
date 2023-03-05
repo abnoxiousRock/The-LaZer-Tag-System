@@ -20,51 +20,163 @@
   <div class="container-fluid min-vw-100 min-vh-100 d-flex align-items-center justify-content-center">
     <div class="container d-flex align-items-center justify-content-center">
       <img class="img-fluid" id="splashscreen" src="logo.png">
-      <div class="container" id="scoreboard" style="display:none;">
-        <form id="myForm" action="/" method="post" >
+      <div class="container-fluid" id="scoreboard" style="display:none;">
+        <form id="myForm" action="/" method="post">
 
-          <div class="row">  
-            <div class="col-6 text-right text-danger">
-
-              <label for="id1">id</label>
-              <input type="text" id="id1" name="id1"><br>
-              <label for="nickname1">nickname</label>
-              <input type="text" id="nickname1" name="nickname1"><br><br>
-
-              <label for="id2">id</label>
-              <input type="text" id="id2" name="id2"><br>
-              <label for="nickname2">nickname</label>
-              <input type="text" id="nickname2" name="nickname2"><br><br>
-
+          <div class="row mt-3">
+            <div class="col-6 text-center text-danger">
+              <h2>RED TEAM</h1>
             </div>
-
-            <div class="col-6 text-right text-success">
-
-              <label for="id3">id</label>
-              <input type="text" id="id3" name="id3"><br>
-              <label for="nickname3">nickname</label>
-              <input type="text" id="nickname3" name="nickname3"><br><br>
-
-              <label for="id4">id</label>
-              <input type="text" id="id4" name="id4"><br>
-              <label for="nickname4">nickname</label>
-              <input type="text" id="nickname4" name="nickname4"><br><br>
-  
+            <div class="col-6 text-center text-success">
+              <h2>GREEN TEAM</h1>
             </div>
           </div>
+          <div class="row">
 
-          <br>
-          <div class="row justify-content-end">
-            <input class="btn btn-primary mx-3" type="submit" formmethod="post" value="will send scoreboard to server as JSON without page reload">
+            <div class="col-2 text-right text-danger">
+              <label class="mb-2" for="id1">1</label>
+              <input class="mb-2 px60w" type="text" id="id1" name="id1"><br>
+              <label class="mb-2" for="id2">2</label>
+              <input class="mb-2 px60w" type="text" id="id2" name="id2"><br>
+              <label class="mb-2" for="id3">3</label>
+              <input class="mb-2 px60w" type="text" id="id3" name="id3"><br>
+              <label class="mb-2" for="id4">4</label>
+              <input class="mb-2 px60w" type="text" id="id4" name="id4"><br>
+              <label class="mb-2" for="id5">5</label>
+              <input class="mb-2 px60w" type="text" id="id5" name="id5"><br>
+              <label class="mb-2" for="id6">6</label>
+              <input class="mb-2 px60w" type="text" id="id6" name="id6"><br>
+              <label class="mb-2" for="id7">7</label>
+              <input class="mb-2 px60w" type="text" id="id7" name="id7"><br>
+              <label class="mb-2" for="id8">8</label>
+              <input class="mb-2 px60w" type="text" id="id8" name="id8"><br>
+              <label class="mb-2" for="id9">9</label>
+              <input class="mb-2 px60w" type="text" id="id9" name="id9"><br>
+              <label class="mb-2" for="id10">10</label>
+              <input class="mb-2 px60w" type="text" id="id10" name="id10"><br>
+              <label class="mb-2" for="id11">11</label>
+              <input class="mb-2 px60w" type="text" id="id11" name="id11"><br>
+              <label class="mb-2" for="id12">12</label>
+              <input class="mb-2 px60w" type="text" id="id12" name="id12"><br>
+              <label class="mb-2" for="id13">13</label>
+              <input class="mb-2 px60w" type="text" id="id13" name="id13"><br>
+              <label class="mb-2" for="id14">14</label>
+              <input class="mb-2 px60w" type="text" id="id14" name="id14"><br>
+              <label class="mb-2" for="id15">15</label>
+              <input class="mb-2 px60w" type="text" id="id15" name="id15"><br>
+              <label class="mb-2" for="id16">16</label>
+              <input class="mb-2 px60w" type="text" id="id16" name="id16"><br>
+              <label class="mb-2" for="id17">17</label>
+              <input class="mb-2 px60w" type="text" id="id17" name="id17"><br>
+              <label class="mb-2" for="id18">18</label>
+              <input class="mb-2 px60w" type="text" id="id18" name="id18"><br>
+              <label class="mb-2" for="id19">19</label>
+              <input class="mb-2 px60w" type="text" id="id19" name="id19"><br>
+              <label class="mb-2" for="id20">20</label>
+              <input class="mb-2 px60w" type="text" id="id20" name="id20"><br>
+            </div>
+
+            <div class="col-4 text-left text-danger">
+              <input class="mb-2 px300w" type="text" id="nickname1" name="nickname1"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname2" name="nickname2"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname3" name="nickname3"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname4" name="nickname4"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname5" name="nickname5"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname6" name="nickname6"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname7" name="nickname7"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname8" name="nickname8"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname9" name="nickname9"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname10" name="nickname10"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname11" name="nickname11"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname12" name="nickname12"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname13" name="nickname13"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname14" name="nickname14"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname15" name="nickname15"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname16" name="nickname16"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname17" name="nickname17"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname18" name="nickname18"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname19" name="nickname19"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname20" name="nickname20"><br>
+            </div>
+
+            <div class="col-2 text-right text-success">
+              <label class="mb-2" for="id21">1</label>
+              <input class="mb-2 px60w" type="text" id="id21" name="id21"><br>
+              <label class="mb-2" for="id22">2</label>
+              <input class="mb-2 px60w" type="text" id="id22" name="id22"><br>
+              <label class="mb-2" for="id23">3</label>
+              <input class="mb-2 px60w" type="text" id="id23" name="id23"><br>
+              <label class="mb-2" for="id24">4</label>
+              <input class="mb-2 px60w" type="text" id="id24" name="id24"><br>
+              <label class="mb-2" for="id25">5</label>
+              <input class="mb-2 px60w" type="text" id="id25" name="id25"><br>
+              <label class="mb-2" for="id26">6</label>
+              <input class="mb-2 px60w" type="text" id="id26" name="id26"><br>
+              <label class="mb-2" for="id27">7</label>
+              <input class="mb-2 px60w" type="text" id="id27" name="id27"><br>
+              <label class="mb-2" for="id28">8</label>
+              <input class="mb-2 px60w" type="text" id="id28" name="id28"><br>
+              <label class="mb-2" for="id29">9</label>
+              <input class="mb-2 px60w" type="text" id="id29" name="id29"><br>
+              <label class="mb-2" for="id30">10</label>
+              <input class="mb-2 px60w" type="text" id="id30" name="id30"><br>
+              <label class="mb-2" for="id31">11</label>
+              <input class="mb-2 px60w" type="text" id="id31" name="id31"><br>
+              <label class="mb-2" for="id32">12</label>
+              <input class="mb-2 px60w" type="text" id="id32" name="id32"><br>
+              <label class="mb-2" for="id33">13</label>
+              <input class="mb-2 px60w" type="text" id="id33" name="id33"><br>
+              <label class="mb-2" for="id34">14</label>
+              <input class="mb-2 px60w" type="text" id="id34" name="id34"><br>
+              <label class="mb-2" for="id35">15</label>
+              <input class="mb-2 px60w" type="text" id="id35" name="id35"><br>
+              <label class="mb-2" for="id36">16</label>
+              <input class="mb-2 px60w" type="text" id="id36" name="id36"><br>
+              <label class="mb-2" for="id37">17</label>
+              <input class="mb-2 px60w" type="text" id="id37" name="id37"><br>
+              <label class="mb-2" for="id38">18</label>
+              <input class="mb-2 px60w" type="text" id="id38" name="id38"><br>
+              <label class="mb-2" for="id39">19</label>
+              <input class="mb-2 px60w" type="text" id="id39" name="id39"><br>
+              <label class="mb-2" for="id40">20</label>
+              <input class="mb-2 px60w" type="text" id="id40" name="id40"><br>
+            </div>
+
+            <div class="col-4 text-left text-success">
+              <input class="mb-2 px300w" type="text" id="nickname21" name="nickname21"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname22" name="nickname22"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname23" name="nickname23"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname24" name="nickname24"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname25" name="nickname25"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname26" name="nickname26"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname27" name="nickname27"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname28" name="nickname28"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname29" name="nickname29"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname30" name="nickname30"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname31" name="nickname31"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname32" name="nickname32"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname33" name="nickname33"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname34" name="nickname34"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname35" name="nickname35"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname36" name="nickname36"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname37" name="nickname37"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname38" name="nickname38"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname39" name="nickname39"><br>
+              <input class="mb-2 px300w"  type="text" id="nickname40" name="nickname40"><br>
+            </div>
+          </div>
+          <div class="row justify-content-end mt-2 mr-4">
+            <input class="btn btn-primary mx-3 px-5" type="submit" formmethod="post"
+              value="Start Game!">
           </div>
 
         </form>
 
         <br><br>
 
-        <form id="regPlayer" action="/register" method="post" >
+        <form id="regPlayer" action="/register" method="post">
 
-          <div class="row">  
+          <div class="row">
             <div class="col-12 text-right text-danger">
 
               <label for="newId">id</label>
