@@ -35,9 +35,6 @@ module.exports = {
                 if (playerEntry.id === hitEvent.shooterId) {
                     playerEntry.numPoints += this.pointsPerHit;
                 }
-                if (playerEntry.id === hitEvent.shotId) {
-                    playerEntry.numPoints -= this.pointsPerHit;
-                }
             });
             this.hitEvents.push(hitEvent);
 

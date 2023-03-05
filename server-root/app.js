@@ -27,7 +27,13 @@ socket.on('message', (msg, rinfo) => {
     let stringMessage = msg.toString('utf-8');
     let playerIdArray = stringMessage.split(':');
     let hitEvent = new classes.HitEvent(parseInt(playerIdArray[0]), parseInt(playerIdArray[1]));
-    scoreboard.addHitEvent(hitEvent);
+    scoreboard.hitEvents.push(hitEvent);
+    scoreboard.playerEntries.forEach(playerEntry => {
+        if (playerEntry.id == hitEvent.shooterId) {
+
+            playerEntry.numPoints += scoreboard.pointsPerHit;
+        }
+    });
     console.log('player ' + playerIdArray[0] + ' hit player ' + playerIdArray[1]);
 });
 
@@ -46,6 +52,17 @@ app.get("/dbdata", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     (async () => {
             let {data, error} = await sbClient.from('player').select();
+            if (error)
+                res.end(JSON.stringify(error));
+            else
+                res.end(JSON.stringify(data));
+    })();
+});
+
+app.get("/nickname", function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    (async () => {
+            let {data, error} = await sbClient.from('player').select('codename').eq('id', req.query.id);
             if (error)
                 res.end(JSON.stringify(error));
             else
@@ -76,6 +93,11 @@ app.post("/register", function (req, res) {
 app.post("/", function (req, res) {
     console.log("Post received, time to start game");
     console.log(req.body);
+    console.log('scoreboard before: ');
+    console.log(scoreboard);
+    scoreboard = req.body;
+    console.log('scoreboard after: ');
+    console.log(scoreboard);
     res.send();
 });
 
@@ -84,9 +106,4 @@ app.listen(3000, function () {
 });
 
 socket.bind(7501);
-
-let scoreboard = new classes.Scoreboard(10);
-
-for (let i = 1; i < 5; i++) {
-    scoreboard.addPlayerEntry(new classes.PlayerEntry(i, 500));
-}
+let scoreboard = {};
