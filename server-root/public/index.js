@@ -1,5 +1,5 @@
 // CONST values
-const NUMPLAYERS = 4;
+const NUMPLAYERS = 40;
 const POINTSPERHIT = 10;
 // for future use if you want to take off points for being hit
 const NUMPOINTSTOSTART = 0;
