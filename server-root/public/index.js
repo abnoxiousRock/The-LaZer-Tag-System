@@ -44,6 +44,7 @@ function handleFormStartGame(event) {
         }
     }
 
+    startTimer();
     startGame();
     //function to disable form/button and prevent further changes and 
     //syncs with the remote nickname database (form = disabled?)
@@ -140,6 +141,20 @@ let startGame = function () {
     xhr.open('POST', url, true)
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
     xhr.send(post);
+}
+
+function startTimer() {
+    var counter = 30;
+    var timer = setInterval(function() {
+      document.getElementById("timer").innerHTML = counter + " seconds till game begins";
+      counter--;
+      if (counter < 0) {
+        clearInterval(timer);
+        document.getElementById("timer").style.color = "red";
+  
+        //change to player action screen
+      }
+    }, 1000);
 }
 
 // CLASSES 
