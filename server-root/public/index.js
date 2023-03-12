@@ -146,13 +146,15 @@ let startGame = function () {
 function startTimer() {
     var counter = 30;
     var timer = setInterval(function() {
-      document.getElementById("timer").innerHTML = counter + " seconds till game begins";
+      document.getElementById("countDownButton").value = counter + " seconds till game begins";
       counter--;
       if (counter < 0) {
         clearInterval(timer);
-        document.getElementById("timer").style.color = "red";
-  
-        //change to player action screen
+        document.getElementById("countDownButton").style.color = "red";
+        let elem = document.getElementById('scoreboard');
+        elem.style.display = 'none';
+        elem = document.getElementById('playAction');
+        elem.style.display = 'block';
       }
     }, 1000);
 }
