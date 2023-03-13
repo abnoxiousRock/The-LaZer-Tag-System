@@ -145,7 +145,7 @@ let startGame = function () {
 }
 
 function startTimer() {
-    var counter = 2;
+    var counter = 30;
     var timer = setInterval(function() {
       document.getElementById("countDownButton").value = counter + " seconds till game begins";
       counter--;
