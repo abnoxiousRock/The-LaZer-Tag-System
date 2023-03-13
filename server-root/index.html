@@ -26,6 +26,11 @@
   	<script src="index.js"></script>
 </head>
 <body>
+
+          <div class="row justify-content-end mt-2 mr-4">
+            <input class="btn btn-primary mx-3 px-5" type="submit" formmethod="post" id = "countDownButton"
+              value="Start Game!">
+          </div>
 	<div 	class="container-fluid min-vw-100 min-vh-100 d-flex align-items-center justify-content-center">
 	<div 	class="container d-flex align-items-center justify-content-center">
 	<img 	class="img-fluid" 
@@ -776,22 +781,114 @@
 	</div>
 </form>
       
-</div>
-</div>
-</div>
-</div>
+        </form>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script	src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
+        <br><br>
+
+        <form id="regPlayer" action="/register" method="post">
+
+          <div class="row">
+            <div class="col-12 text-right text-danger">
+
+              <label for="newId">id</label>
+              <input type="text" id="newId" name="newId" required><br>
+              <label for="fName">first name</label>
+              <input type="text" id="fName" name="fName" required><br>
+              <label for="lName">last name</label>
+              <input type="text" id="lName" name="lName" required><br>
+              <label for="nName">nickname</label>
+              <input type="text" id="nName" name="nName" required><br><br>
+
+            </div>
+          </div>
+
+          <br>
+          <div class="row justify-content-end">
+            <input class="btn btn-primary mx-3" type="submit" formmethod="post" value="add player to database">
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Player Action Screen -->
+	<div	class = "container-fluid"
+	      	id="playAction" 
+		style="display:none;">
+	<table style = "width:100%; text-align:center; border: 1px solid black;">
+		<!-- Row 1 -->
+		<tr style = "font-size: 50px;">
+			<th></th>
+			<th id = "PASteam1"
+			    class = "text-danger">TEAM 1</th>
+			<th></th>
+			<th id = "playActionTimer" style="color:white;"></th>
+			<th></th>
+			<th id = "PASteam2"
+			    class = "text-success">TEAM 2</th>
+			<th></th>
+		</tr>
+		<!-- Row 2 -->
+		<tr style="color:white;">
+			<th>#1</th>
+			<td>PLAYER 1</td>
+			<td>000</td>
+			<th></th>
+			<th>#1</th>
+			<td>PLAYER 1</td>
+			<td>000</td>
+		</tr>
+		<!-- Row 3 -->
+		<tr style="color:white;">
+			<th>#2</th>
+			<td>PLAYER 2</td>
+			<td>000</td>
+			<th></th>
+			<th>#2</th>
+			<td>PLAYER 2</td>
+			<td>000</td>
+		</tr>
+		<!-- Row 4 -->
+		<tr style="color:white;">
+			<th>#3</th>
+			<td>PLAYER 3</td>
+			<td>000</td>
+			<th></th>
+			<th>#3</th>
+			<td>PLAYER 3</td>
+			<td>000</td>
+		</tr>
+		<!-- Row 5 -->
+		<tr style="color:white; font-size:20px;">
+			<td></td>
+			<td>TEAM SCORE:</td>
+			<td>000</td>
+			<td></td>
+			<td></td>
+			<td>TEAM SCORE:</td>
+			<td>000</td>
+		</tr>
+	</table>
+       </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</div>
+</div>
+</div>
+</div>
 </body>
 
 </html>
