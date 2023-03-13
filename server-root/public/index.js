@@ -188,7 +188,9 @@ document.addEventListener('keydown', (event) => {
         elem.style.display = 'none';
         elem = document.getElementById('playAction');
         elem.style.display = 'block';
+        startTimer();
         startGame();
+        playerActionScreen();
     }
 });
 
