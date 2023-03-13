@@ -159,6 +159,18 @@ function startTimer() {
     }, 1000);
 }
 
+document.addEventListener('keydown', (event) => {
+    event = event || window.event;
+    if(event.keyCode == 116){
+        event.preventDefault();
+        let elem = document.getElementById('scoreboard');
+        elem.style.display = 'none';
+        elem = document.getElementById('playAction');
+        elem.style.display = 'block';
+        startGame();
+    }
+});
+
 // CLASSES 
 
 class PlayerEntry {
