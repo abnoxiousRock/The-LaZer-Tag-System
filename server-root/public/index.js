@@ -44,6 +44,7 @@ function handleFormStartGame(event) {
         }
     }
 
+    startTimer();
     startGame();
     //function to disable form/button and prevent further changes and 
     //syncs with the remote nickname database (form = disabled?)
@@ -141,6 +142,34 @@ let startGame = function () {
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
     xhr.send(post);
 }
+
+function startTimer() {
+    var counter = 30;
+    var timer = setInterval(function() {
+      document.getElementById("countDownButton").value = counter + " seconds till game begins";
+      counter--;
+      if (counter < 0) {
+        clearInterval(timer);
+        document.getElementById("countDownButton").style.color = "red";
+        let elem = document.getElementById('scoreboard');
+        elem.style.display = 'none';
+        elem = document.getElementById('playAction');
+        elem.style.display = 'block';
+      }
+    }, 1000);
+}
+
+document.addEventListener('keydown', (event) => {
+    event = event || window.event;
+    if(event.keyCode == 116){
+        event.preventDefault();
+        let elem = document.getElementById('scoreboard');
+        elem.style.display = 'none';
+        elem = document.getElementById('playAction');
+        elem.style.display = 'block';
+        startGame();
+    }
+});
 
 // CLASSES 
 
