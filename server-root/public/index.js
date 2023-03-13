@@ -159,6 +159,28 @@ function startTimer() {
     }, 1000);
 }
 
+function returnSignIn() {
+    for (let i = 1; i <= NUMPLAYERS; i++) {
+        tempString = 'id';
+        tempString += i;
+        let elem = document.getElementById(tempString);
+        elem.value = '';
+        elem.addEventListener("input", getNickname);
+        elem = document.getElementById('nickname' + i);
+        elem.disabled = true;
+        elem.value = '';
+    }
+    elem = document.getElementById('playAction');
+    elem.style.display = 'none';
+    document.getElementById("countDownButton").value = "Start Game!";
+    document.getElementById("countDownButton").style.color = "white";
+    setTimeout(fadeSplash, 3000);
+    let form = document.getElementById('myForm');
+    form.addEventListener('submit', handleFormStartGame);
+    form = document.getElementById('regPlayer');
+    form.addEventListener('submit', handleFormRegister);
+}
+
 document.addEventListener('keydown', (event) => {
     event = event || window.event;
     if(event.keyCode == 116){
