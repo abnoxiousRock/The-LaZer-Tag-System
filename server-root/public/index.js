@@ -46,6 +46,7 @@ function handleFormStartGame(event) {
 
     startTimer();
     startGame();
+    playerActionScreen();
     //function to disable form/button and prevent further changes and 
     //syncs with the remote nickname database (form = disabled?)
     //function to start music
@@ -144,7 +145,7 @@ let startGame = function () {
 }
 
 function startTimer() {
-    var counter = 30;
+    var counter = 2;
     var timer = setInterval(function() {
       document.getElementById("countDownButton").value = counter + " seconds till game begins";
       counter--;
@@ -157,6 +158,26 @@ function startTimer() {
         elem.style.display = 'block';
       }
     }, 1000);
+}
+
+function playerActionScreen() {
+
+	// Countdown Timer (in seconds)
+	var timeLeft = 120;
+	var timer = setInterval(function() {
+	
+	var minutes = Math.floor(timeLeft / 60);
+	var seconds = timeLeft % 60;
+
+	console.log(minutes + ":" + seconds);
+
+	document.getElementById("playActionTimer").innerHTML = minutes + ":" + seconds;
+	--timeLeft;
+	}, 1000);
+
+	//top scoreboard leaders
+	//total points
+	//"live" log of events
 }
 
 document.addEventListener('keydown', (event) => {
