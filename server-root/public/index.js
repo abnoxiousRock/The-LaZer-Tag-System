@@ -155,6 +155,7 @@ function startTimer() {
         elem.style.display = 'none';
         elem = document.getElementById('playAction');
         elem.style.display = 'block';
+        setTimeout(returnSignIn, 1000);
       }
     }, 1000);
 }
