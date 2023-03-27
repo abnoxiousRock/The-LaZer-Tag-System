@@ -3,8 +3,11 @@ const NUMPLAYERS = 40;
 const POINTSPERHIT = 10;
 // for future use if you want to take off points for being hit
 const NUMPOINTSTOSTART = 0;
-
 // end CONSTs
+
+var songArray = ['0.mp3', '1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3', '6.mp3'];
+//moved into function for now
+//shuffle(songArray);
 
 var fadeSplash = function() {
     let elem = document.getElementById('splashscreen');
@@ -32,6 +35,24 @@ window.onload = function() {
     }
 }
 
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
 function handleFormStartGame(event) {
     event.preventDefault();
 
@@ -47,6 +68,7 @@ function handleFormStartGame(event) {
     startTimer();
     startGame();
     playerActionScreen();
+    setTimeout(delayableSongPlay, 14000);
     //function to disable form/button and prevent further changes and 
     //syncs with the remote nickname database (form = disabled?)
     //function to start music
@@ -60,6 +82,20 @@ function handleFormRegister(event) {
     event.preventDefault();
     register();
     resetFields();
+}
+
+//not sure how to use setTimeout with a func that takes arguments recursively (see below), so using this
+let delayableSongPlay = function() {
+    shuffle(songArray);
+    playSongList(songArray);
+}
+
+function playSongList(array) {
+    //console.log('in playSongList()')
+    if (array.length > 0) {
+        var music = new Audio(array[0]).play();
+        console.log('playing song ' + array[0]);
+    }
 }
 
 let register = function () {
@@ -148,6 +184,7 @@ function startTimer() {
     var counter = 30;
     var timer = setInterval(function() {
       document.getElementById("countDownButton").value = counter + " seconds till game begins";
+      document.getElementById("countDownButton").disabled = true;
       counter--;
       if (counter < 0) {
         clearInterval(timer);
