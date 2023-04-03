@@ -167,7 +167,10 @@ let startGame = function () {
         let id = elem.value;
         elem = document.getElementById('nickname' + i);
         if (id !== '') {
-            let tempPlayer = new PlayerEntry(id, elem.value, NUMPOINTSTOSTART);
+            let isRed = false;
+            if (i <= NUMPLAYERS/2)
+                isRed = true;
+            let tempPlayer = new PlayerEntry(isRed, id, elem.value, NUMPOINTSTOSTART);
             scoreboard.addPlayerEntry(tempPlayer);
         }
     }
@@ -234,7 +237,8 @@ document.addEventListener('keydown', (event) => {
 // CLASSES 
 
 class PlayerEntry {
-    constructor(id, nickname, numPoints) {
+    constructor(isRed, id, nickname, numPoints) {
+        this.isRed = isRed;
         this.id = id;
         this.nickname = nickname;
         this.numPoints = numPoints;
