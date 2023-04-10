@@ -86,8 +86,6 @@ function handleFormStartGame(event) {
 
     startTimer();
     startGame();
-
-    playerActionScreen();
     setTimeout(delayableSongPlay, 14000);
 
     //function to disable form/button and prevent further changes and 
