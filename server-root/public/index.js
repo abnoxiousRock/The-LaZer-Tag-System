@@ -3,6 +3,8 @@ const NUMPLAYERS = 40;
 const POINTSPERHIT = 10;
 // for future use if you want to take off points for being hit
 const NUMPOINTSTOSTART = 0;
+let timer;
+
 // end CONSTs
 
 var songArray = ['0.mp3', '1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3', '6.mp3'];
@@ -84,8 +86,10 @@ function handleFormStartGame(event) {
 
     startTimer();
     startGame();
+
     playerActionScreen();
     setTimeout(delayableSongPlay, 14000);
+
     //function to disable form/button and prevent further changes and 
     //syncs with the remote nickname database (form = disabled?)
     //function to start music
@@ -213,17 +217,17 @@ let startGame = function () {
 
 function startTimer() {
     var counter = 30;
-    var timer = setInterval(function() {
+    timer = setInterval(function() {
       document.getElementById("countDownButton").value = counter + " seconds till game begins";
       document.getElementById("countDownButton").disabled = true;
       counter--;
       if (counter < 0) {
         clearInterval(timer);
-        document.getElementById("countDownButton").style.color = "red";
         let elem = document.getElementById('scoreboard');
         elem.style.display = 'none';
         elem = document.getElementById('playAction');
         elem.style.display = 'block';
+        playerActionScreen();
       }
     }, 1000);
 }
@@ -231,16 +235,21 @@ function startTimer() {
 function playerActionScreen() {
 
 	// Countdown Timer (in seconds)
-	var timeLeft = 120;
+	var timeLeft = 360;
 	var timer = setInterval(function() {
 	
 	var minutes = Math.floor(timeLeft / 60);
 	var seconds = timeLeft % 60;
 
-	console.log(minutes + ":" + seconds);
+    if(seconds < 10){
+        seconds = "0" + seconds;
+    }
 
 	document.getElementById("playActionTimer").innerHTML = minutes + ":" + seconds;
 	--timeLeft;
+    if(minutes == 0 && seconds == 0){
+        clearInterval(timer);
+    }
 	}, 1000);
 
 	//top scoreboard leaders
@@ -258,7 +267,6 @@ document.addEventListener('keydown', (event) => {
         elem.style.display = 'none';
         elem = document.getElementById('playAction');
         elem.style.display = 'block';
-        startTimer();
         startGame();
         playerActionScreen();
     }
