@@ -175,6 +175,17 @@ let startGame = function () {
         }
     }
 
+	// Parsing Data for Player Action Screen
+	console.log(scoreboard.playerEntries);
+	let numberOfPlayers = scoreboard.playerEntries.length;
+	console.log(numberOfPlayers);
+
+	for (let i = 0; i < numberOfPlayers; i++)
+	{
+		console.log(scoreboard.playerEntries[i]);
+	}
+	
+
     let post = JSON.stringify(scoreboard);
     const url = '/'
     let xhr = new XMLHttpRequest()
