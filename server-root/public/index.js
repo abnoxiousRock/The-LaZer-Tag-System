@@ -19,13 +19,36 @@ var isPolling = false;
 
 //this method runs every 1/4 second after it has been called in startgame
 var poll = function() {
-    console.log("polling is happening, insert logic below me");
+    //console.log("polling is happening, insert logic below me");
 
-    //We need to do a Get request to "/scores" here and make our local scoresAndHitEvents = {thing returned from get request}
-
+    //This call updates the local variable scoresAndHitEvents with current data from server and python traffic
+    updateScoresAndHitEvents();
+    //recursive call to keep updating whatever is in this method
     if (isPolling) {
         setTimeout(poll, 500);
     }
+}
+
+//updates the local variable scoresAndHitEvents with current data from server and python traffic
+//meant to be called repeatedly by poll()
+var updateScoresAndHitEvents = function() {
+    let url = '/scores';
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let returnObj = JSON.parse(this.responseText);
+            //console.log(returnObj);
+            //checking that the return object from server isn't empty due to error
+            if (returnObj !== {}) {
+                //console.log("success, received non-empty object from /scores");
+                scoresAndHitEvents = returnObj;
+            }
+            //console.log(scoresAndHitEvents);
+        }
+    };
+
+    xhr.open('GET', url, true);
+    xhr.send();
 }
 
 var fadeSplash = function() {
