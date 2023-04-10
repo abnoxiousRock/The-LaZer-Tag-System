@@ -196,12 +196,15 @@ let startGame = function () {
 
 	// Parsing Data for Player Action Screen
 	console.log(scoreboard.playerEntries);
-	let numberOfPlayers = scoreboard.playerEntries.length;
-	console.log(numberOfPlayers);
+	let players = scoreboard.playerEntries;
+	console.log(players.length);
 
-	for (let i = 0; i < numberOfPlayers; i++)
+	for (let i = 0; i < players.length; i++)
 	{
 		console.log(scoreboard.playerEntries[i]);
+		
+
+		// Adding Players to Their Respective Teams' Array
 	}
 	
 
