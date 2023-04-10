@@ -9,6 +9,23 @@ var songArray = ['0.mp3', '1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3', '6.mp3'];
 //moved into function for now
 //shuffle(songArray);
 
+//this object contains ids/nicknames, updated scores, and hit events
+var scoresAndHitEvents = {};
+
+//this is used to start stop poll(). Set this to false when the timer runs out
+var isPolling = false;
+
+//this method runs every 1/4 second after it has been called in startgame
+var poll = function() {
+    console.log("polling is happening, insert logic below me");
+
+    //We need to do a Get request to "/scores" here and make our local scoresAndHitEvents = {thing returned from get request}
+
+    if (isPolling) {
+        setTimeout(poll, 500);
+    }
+}
+
 var fadeSplash = function() {
     let elem = document.getElementById('splashscreen');
     elem.style.display = 'none';
@@ -229,6 +246,8 @@ function playerActionScreen() {
 	//top scoreboard leaders
 	//total points
 	//"live" log of events
+    isPolling = true;
+    poll();
 }
 
 document.addEventListener('keydown', (event) => {
