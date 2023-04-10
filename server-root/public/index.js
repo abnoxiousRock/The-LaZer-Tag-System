@@ -21,7 +21,7 @@ window.onload = function() {
     let form = document.getElementById('myForm');
     form.addEventListener('submit', handleFormStartGame);
     form = document.getElementById('regPlayer');
-    form.addEventListener('submit', handleFormRegister);
+    //form.addEventListener('submit', handleFormRegister);
 
     for (let i = 1; i <= NUMPLAYERS; i++) {
         tempString = 'id';

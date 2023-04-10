@@ -94,6 +94,18 @@ app.post("/", function (req, res) {
     console.log("Post received, time to start game");
     scoreboard = req.body;
     console.log(scoreboard);
+    for(let i=0; i<scoreboard.playerEntries.length; i++) {
+        (async () => {
+            let {data, error} = await sbClient.from('player').insert({
+                id: scoreboard.playerEntries[i].id,
+                codename: scoreboard.playerEntries[i].nickname
+            });
+            if (error)
+                res.end(JSON.stringify(error));
+            else
+                res.end(JSON.stringify(data));
+        })();
+    }
     res.send();
 });
 
