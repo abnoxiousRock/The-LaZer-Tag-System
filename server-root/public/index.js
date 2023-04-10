@@ -21,7 +21,7 @@ var isPolling = false;
 var poll = function() {
     //console.log("polling is happening, insert logic below me");
 
-    //We need to do a Get request to "/scores" here and make our local scoresAndHitEvents = {thing returned from get request}
+    //This call updates the local variable scoresAndHitEvents with current data from server and python traffic
     updateScoresAndHitEvents();
     //recursive call to keep updating whatever is in this method
     if (isPolling) {
@@ -29,6 +29,8 @@ var poll = function() {
     }
 }
 
+//updates the local variable scoresAndHitEvents with current data from server and python traffic
+//meant to be called repeatedly by poll()
 var updateScoresAndHitEvents = function() {
     let url = '/scores';
     let xhr = new XMLHttpRequest();
