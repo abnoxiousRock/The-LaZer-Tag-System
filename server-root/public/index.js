@@ -245,29 +245,38 @@ function startTimer() {
 
 function playerActionScreen() {
 
-	// Countdown Timer (in seconds)
+	/* GENERAL PROCEDURE HERE:
+	 * 1.) Initialize and Start Countdown Timer.
+	 * 2.) Initialize and Start "Live Log" of Events.
+	 * 3.) Initialize and Start (polling for) Scoreboard.
+	 * 4.) Update the Scoreboard and "Live Log".
+	 * 5.) Repeat Step 4 until Timer is Done.
+	 * 6.) End Game.
+	 */
+
+	// 1.) Countdown Timer (in seconds)
 	var timeLeft = 360;
 	var timer = setInterval(function() {
 	
 	var minutes = Math.floor(timeLeft / 60);
 	var seconds = timeLeft % 60;
 
-    if(seconds < 10){
-        seconds = "0" + seconds;
-    }
+	if(seconds < 10){
+        	seconds = "0" + seconds;
+	}
 
 	document.getElementById("playActionTimer").innerHTML = minutes + ":" + seconds;
 	--timeLeft;
-    if(minutes == 0 && seconds == 0){
-        clearInterval(timer);
-    }
+    	if(minutes == 0 && seconds == 0){
+        	clearInterval(timer);
+    	}
 	}, 1000);
 
-	//top scoreboard leaders
-	//total points
-	//"live" log of events
-    isPolling = true;
-    poll();
+	// 2.) Initialize and Start "Live Log" of Events
+	
+	// 3.) Initialize and Start (polling for) Scoreboard
+	isPolling = true;
+	poll();	
 }
 
 document.addEventListener('keydown', (event) => {
