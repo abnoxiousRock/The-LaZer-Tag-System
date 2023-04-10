@@ -7,6 +7,27 @@ let timer;
 
 // end CONSTs
 
+var songArray = ['0.mp3', '1.mp3', '2.mp3', '3.mp3', '4.mp3', '5.mp3', '6.mp3'];
+//moved into function for now
+//shuffle(songArray);
+
+//this object contains ids/nicknames, updated scores, and hit events
+var scoresAndHitEvents = {};
+
+//this is used to start stop poll(). Set this to false when the timer runs out
+var isPolling = false;
+
+//this method runs every 1/4 second after it has been called in startgame
+var poll = function() {
+    console.log("polling is happening, insert logic below me");
+
+    //We need to do a Get request to "/scores" here and make our local scoresAndHitEvents = {thing returned from get request}
+
+    if (isPolling) {
+        setTimeout(poll, 500);
+    }
+}
+
 var fadeSplash = function() {
     let elem = document.getElementById('splashscreen');
     elem.style.display = 'none';
@@ -19,7 +40,7 @@ window.onload = function() {
     let form = document.getElementById('myForm');
     form.addEventListener('submit', handleFormStartGame);
     form = document.getElementById('regPlayer');
-    form.addEventListener('submit', handleFormRegister);
+    //form.addEventListener('submit', handleFormRegister);
 
     for (let i = 1; i <= NUMPLAYERS; i++) {
         tempString = 'id';
@@ -32,6 +53,24 @@ window.onload = function() {
         elem.value = '';
     }
 }
+
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
 
 function handleFormStartGame(event) {
     event.preventDefault();
@@ -47,6 +86,10 @@ function handleFormStartGame(event) {
 
     startTimer();
     startGame();
+
+    playerActionScreen();
+    setTimeout(delayableSongPlay, 14000);
+
     //function to disable form/button and prevent further changes and 
     //syncs with the remote nickname database (form = disabled?)
     //function to start music
@@ -60,6 +103,20 @@ function handleFormRegister(event) {
     event.preventDefault();
     register();
     resetFields();
+}
+
+//not sure how to use setTimeout with a func that takes arguments recursively (see below), so using this
+let delayableSongPlay = function() {
+    shuffle(songArray);
+    playSongList(songArray);
+}
+
+function playSongList(array) {
+    //console.log('in playSongList()')
+    if (array.length > 0) {
+        var music = new Audio(array[0]).play();
+        console.log('playing song ' + array[0]);
+    }
 }
 
 let register = function () {
@@ -131,10 +188,24 @@ let startGame = function () {
         let id = elem.value;
         elem = document.getElementById('nickname' + i);
         if (id !== '') {
-            let tempPlayer = new PlayerEntry(id, elem.value, NUMPOINTSTOSTART);
+            let isRed = false;
+            if (i <= NUMPLAYERS/2)
+                isRed = true;
+            let tempPlayer = new PlayerEntry(isRed, id, elem.value, NUMPOINTSTOSTART);
             scoreboard.addPlayerEntry(tempPlayer);
         }
     }
+
+	// Parsing Data for Player Action Screen
+	console.log(scoreboard.playerEntries);
+	let numberOfPlayers = scoreboard.playerEntries.length;
+	console.log(numberOfPlayers);
+
+	for (let i = 0; i < numberOfPlayers; i++)
+	{
+		console.log(scoreboard.playerEntries[i]);
+	}
+	
 
     let post = JSON.stringify(scoreboard);
     const url = '/'
@@ -148,6 +219,7 @@ function startTimer() {
     var counter = 30;
     timer = setInterval(function() {
       document.getElementById("countDownButton").value = counter + " seconds till game begins";
+      document.getElementById("countDownButton").disabled = true;
       counter--;
       if (counter < 0) {
         clearInterval(timer);
@@ -183,6 +255,8 @@ function playerActionScreen() {
 	//top scoreboard leaders
 	//total points
 	//"live" log of events
+    isPolling = true;
+    poll();
 }
 
 document.addEventListener('keydown', (event) => {
@@ -201,7 +275,8 @@ document.addEventListener('keydown', (event) => {
 // CLASSES 
 
 class PlayerEntry {
-    constructor(id, nickname, numPoints) {
+    constructor(isRed, id, nickname, numPoints) {
+        this.isRed = isRed;
         this.id = id;
         this.nickname = nickname;
         this.numPoints = numPoints;
