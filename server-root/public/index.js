@@ -38,10 +38,10 @@ var updateScoresAndHitEvents = function() {
             //console.log(returnObj);
             //checking that the return object from server isn't empty due to error
             if (returnObj !== {}) {
-                console.log("success, received non-empty object from /scores");
+                //console.log("success, received non-empty object from /scores");
                 scoresAndHitEvents = returnObj;
             }
-            console.log(scoresAndHitEvents);
+            //console.log(scoresAndHitEvents);
         }
     };
 
