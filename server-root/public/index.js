@@ -19,13 +19,14 @@ var isPolling = false;
 
 //this method runs every 1/4 second after it has been called in startgame
 var poll = function() {
-    //console.log("polling is happening, insert logic below me");
+	//console.log("polling is happening, insert logic below me");
 
-    //This call updates the local variable scoresAndHitEvents with current data from server and python traffic
-    updateScoresAndHitEvents();
-    //recursive call to keep updating whatever is in this method
-    if (isPolling) {
-        setTimeout(poll, 500);
+	//This call updates the local variable scoresAndHitEvents with current data from server and python traffic
+	updateScoresAndHitEvents();
+
+	//recursive call to keep updating whatever is in this method
+	if (isPolling) {
+		setTimeout(poll, 500);
     }
 }
 
