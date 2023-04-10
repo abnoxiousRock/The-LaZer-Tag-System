@@ -198,6 +198,10 @@ let startGame = function () {
 	console.log(scoreboard.playerEntries);
 	let players = scoreboard.playerEntries;
 	console.log(players.length);
+	
+	// Creating Team Arrays for Each Team
+	const redTeamPlayers = [];
+	const greenTeamPlayers = [];
 
 	for (let i = 0; i < players.length; i++)
 	{
@@ -205,7 +209,13 @@ let startGame = function () {
 		
 
 		// Adding Players to Their Respective Teams' Array
+		if (players[i].isRed)
+			{redTeamPlayers.push(players[i]);}
+		else
+			{greenTeamPlayers.push(players[i]);}
 	}
+	console.log(redTeamPlayers);
+	console.log(greenTeamPlayers);
 	
 
     let post = JSON.stringify(scoreboard);
