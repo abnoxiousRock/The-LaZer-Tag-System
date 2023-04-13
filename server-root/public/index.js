@@ -3,6 +3,11 @@ const NUMPLAYERS = 40;
 const POINTSPERHIT = 10;
 // for future use if you want to take off points for being hit
 const NUMPOINTSTOSTART = 0;
+
+// Team Arrays (need better title...)
+const redTeamPlayers = [];
+const greenTeamPlayers = [];
+
 let timer;
 
 // end CONSTs
@@ -222,11 +227,8 @@ let startGame = function () {
 //	console.log(scoreboard.playerEntries);
 	let players = scoreboard.playerEntries;
 //	console.log(players.length);
-	
-	// Creating Team Arrays for Each Team
-	const redTeamPlayers = [];
-	const greenTeamPlayers = [];
 
+	// Load Players into Respective Teams
 	for (let i = 0; i < players.length; i++)
 	{
 		console.log(scoreboard.playerEntries[i]);
@@ -251,7 +253,7 @@ let startGame = function () {
 }
 
 function startTimer() {
-    var counter = 30;
+    var counter = 0;
     timer = setInterval(function() {
       document.getElementById("countDownButton").value = counter + " seconds till game begins";
       document.getElementById("countDownButton").disabled = true;
@@ -301,14 +303,14 @@ function playerActionScreen() {
 	// 3.) Initialize and Start (polling for) Scoreboard
 	
 	// Red Team
-	document.getElementById('redP1') = player;
-	document.getElementById('redP2');
-	document.getElementById('redP3');
+	document.getElementById('redP1-Nickname').innerHTML = redTeamPlayers[0].nickname;
+	document.getElementById('redP2-Nickname').innerHTML = redTeamPlayers[1].nickname;
+	document.getElementById('redP3-Nickname').innerHTML = redTeamPlayers[2].nickname;
 
 	// Green Team
-	document.getElementById('greenP1');
-	document.getElementById('greenP2');
-	document.getElementById('greenP3');
+	document.getElementById('greenP1-Nickname').innerHTML = greenTeamPlayers[0].nickname;
+	document.getElementById('greenP2-Nickname').innerHTML = greenTeamPlayers[1].nickname;
+	document.getElementById('greenP3-Nickname').innerHTML = greenTeamPlayers[2].nickname;
 
 	isPolling = true;
 	poll();	
