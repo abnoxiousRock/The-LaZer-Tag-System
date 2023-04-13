@@ -219,9 +219,9 @@ let startGame = function () {
     }
 
 	// Parsing Data for Player Action Screen
-	console.log(scoreboard.playerEntries);
+//	console.log(scoreboard.playerEntries);
 	let players = scoreboard.playerEntries;
-	console.log(players.length);
+//	console.log(players.length);
 	
 	// Creating Team Arrays for Each Team
 	const redTeamPlayers = [];
@@ -299,6 +299,17 @@ function playerActionScreen() {
 	// 2.) Initialize and Start "Live Log" of Events
 	
 	// 3.) Initialize and Start (polling for) Scoreboard
+	
+	// Red Team
+	document.getElementById('redP1') = player;
+	document.getElementById('redP2');
+	document.getElementById('redP3');
+
+	// Green Team
+	document.getElementById('greenP1');
+	document.getElementById('greenP2');
+	document.getElementById('greenP3');
+
 	isPolling = true;
 	poll();	
 }
