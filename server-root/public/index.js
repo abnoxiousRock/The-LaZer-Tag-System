@@ -253,7 +253,7 @@ let startGame = function () {
 }
 
 function startTimer() {
-    var counter = 0;
+    var counter = 30;
     timer = setInterval(function() {
       document.getElementById("countDownButton").value = counter + " seconds till game begins";
       document.getElementById("countDownButton").disabled = true;
