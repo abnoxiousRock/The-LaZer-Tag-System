@@ -224,16 +224,13 @@ let startGame = function () {
     }
 
 	// Parsing Data for Player Action Screen
-//	console.log(scoreboard.playerEntries);
 	let players = scoreboard.playerEntries;
-//	console.log(players.length);
 
 	// Load Players into Respective Teams
 	for (let i = 0; i < players.length; i++)
 	{
 		console.log(scoreboard.playerEntries[i]);
 		
-
 		// Adding Players to Their Respective Teams' Array
 		if (players[i].isRed)
 			{redTeamPlayers.push(players[i]);}
@@ -253,7 +250,7 @@ let startGame = function () {
 }
 
 function startTimer() {
-    var counter = 0;
+    var counter = 30;
     timer = setInterval(function() {
       document.getElementById("countDownButton").value = counter + " seconds till game begins";
       document.getElementById("countDownButton").disabled = true;
@@ -282,10 +279,12 @@ function playerActionScreen() {
 
 	// 1.) Countdown Timer (in seconds)
 	var timeLeft = 360;
+	var minutes = -1;
+	var seconds = -1;
 	var timer = setInterval(function() {
 	
-	var minutes = Math.floor(timeLeft / 60);
-	var seconds = timeLeft % 60;
+	minutes = Math.floor(timeLeft / 60);
+	seconds = timeLeft % 60;
 
 	if(seconds < 10){
         	seconds = "0" + seconds;
@@ -301,19 +300,41 @@ function playerActionScreen() {
 	// 2.) Initialize and Start "Live Log" of Events
 	
 	// 3.) Initialize and Start (polling for) Scoreboard
-	
-	// Red Team
-	document.getElementById('redP1-Nickname').innerHTML = redTeamPlayers[0].nickname;
-	document.getElementById('redP2-Nickname').innerHTML = redTeamPlayers[1].nickname;
-	document.getElementById('redP3-Nickname').innerHTML = redTeamPlayers[2].nickname;
+	numberOfRedPlayers = redTeamPlayers.length;
+	numberOfGreenPlayers = greenTeamPlayers.length;
 
-	// Green Team
-	document.getElementById('greenP1-Nickname').innerHTML = greenTeamPlayers[0].nickname;
-	document.getElementById('greenP2-Nickname').innerHTML = greenTeamPlayers[1].nickname;
-	document.getElementById('greenP3-Nickname').innerHTML = greenTeamPlayers[2].nickname;
+	let scoreboardPoller = setInterval(function() 
+	{	
+		// Checks if Game Time is at Zero
+		if (minutes == 0 && seconds == 0)
+			{clearInterval(scoreboardPoller);}
+		
+		// Update Red Team
+		for (let i = 1; i <= numberOfRedPlayers; i++)
+		{
+			let idNickname = "redP" + i + "-Nickname";
+			let idNumPoints = "redP" + i + "-NumPoints";
 
-	isPolling = true;
-	poll();	
+			document.getElementById(idNickname).innerHTML = redTeamPlayers[i - 1].nickname;
+			document.getElementById(idNumPoints).innerHTML = redTeamPlayers[i - 1].numPoints;
+		}
+
+		// Update Green Team
+		for (let i = 1; i <= numberOfGreenPlayers; i++)
+		{
+			let idNickname = "greenP" + i + "-Nickname";
+			let idNumPoints = "greenP" + i + "-NumPoints";
+
+			document.getElementById(idNickname).innerHTML = greenTeamPlayers[i - 1].nickname;
+			document.getElementById(idNumPoints).innerHTML = greenTeamPlayers[i - 1].numPoints;
+		}
+
+		isPolling = true;
+		poll();
+
+		console.log("BING!");
+
+	}, 1000);
 }
 
 document.addEventListener('keydown', (event) => {
