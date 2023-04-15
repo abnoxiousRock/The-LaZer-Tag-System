@@ -261,16 +261,13 @@ let startGame = function () {
     }
 
 	// Parsing Data for Player Action Screen
-//	console.log(scoreboard.playerEntries);
 	let players = scoreboard.playerEntries;
-//	console.log(players.length);
 
 	// Load Players into Respective Teams
 	for (let i = 0; i < players.length; i++)
 	{
 		//console.log(scoreboard.playerEntries[i]);
 		
-
 		// Adding Players to Their Respective Teams' Array
 		if (players[i].isRed)
 			{redTeamPlayers.push(players[i]);}
@@ -319,10 +316,12 @@ function playerActionScreen() {
 
 	// 1.) Countdown Timer (in seconds)
 	var timeLeft = 360;
+	var minutes = -1;
+	var seconds = -1;
 	var timer = setInterval(function() {
 	
-	var minutes = Math.floor(timeLeft / 60);
-	var seconds = timeLeft % 60;
+	minutes = Math.floor(timeLeft / 60);
+	seconds = timeLeft % 60;
 
 	if(seconds < 10){
         	seconds = "0" + seconds;
@@ -355,6 +354,43 @@ function playerActionScreen() {
 
 	isPolling = true;
 	poll();	
+
+	numberOfRedPlayers = redTeamPlayers.length;
+	numberOfGreenPlayers = greenTeamPlayers.length;
+
+	let scoreboardPoller = setInterval(function() 
+	{	
+		// Checks if Game Time is at Zero
+		if (minutes == 0 && seconds == 0)
+			{clearInterval(scoreboardPoller);}
+		
+		// Update Red Team
+		for (let i = 1; i <= numberOfRedPlayers; i++)
+		{
+			let idNickname = "redP" + i + "-Nickname";
+			let idNumPoints = "redP" + i + "-NumPoints";
+
+			document.getElementById(idNickname).innerHTML = redTeamPlayers[i - 1].nickname;
+			document.getElementById(idNumPoints).innerHTML = redTeamPlayers[i - 1].numPoints;
+		}
+
+		// Update Green Team
+		for (let i = 1; i <= numberOfGreenPlayers; i++)
+		{
+			let idNickname = "greenP" + i + "-Nickname";
+			let idNumPoints = "greenP" + i + "-NumPoints";
+
+			document.getElementById(idNickname).innerHTML = greenTeamPlayers[i - 1].nickname;
+			document.getElementById(idNumPoints).innerHTML = greenTeamPlayers[i - 1].numPoints;
+		}
+
+		isPolling = true;
+		poll();
+
+		//console.log("BING!");
+
+	}, 1000);
+
 }
 
 document.addEventListener('keydown', (event) => {
