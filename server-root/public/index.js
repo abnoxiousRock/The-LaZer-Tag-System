@@ -21,6 +21,7 @@ var scoresAndHitEvents = {};
 
 //this is used to start stop poll(). Set this to false when the timer runs out
 var isPolling = false;
+var firstPoll = true;
 
 //this method runs every 1/4 second after it has been called in startgame
 var poll = function() {
@@ -31,7 +32,42 @@ var poll = function() {
 
 	//recursive call to keep updating whatever is in this method
 	if (isPolling) {
-		setTimeout(poll, 500);
+		setTimeout(poll, 500);  
+        if(!firstPoll)
+        {
+            var players = scoresAndHitEvents.playerEntries
+            for(let i = 0; i < players.length; i++)
+            {
+                var redTeamPoints, greenTeamPoints;
+                if(players[i].isRed == true && players[i].id == redTeamPlayers[0].id)
+                {
+                    document.getElementById('redP1-NumPoints').innerHTML = players[i].numPoints;
+                    redTeamPoints = players[i].numPoints;
+                }
+
+                if(players[i].isRed == true && players[i].id == redTeamPlayers[1].id)
+                {
+                    document.getElementById('redP2-NumPoints').innerHTML = players[i].numPoints;
+                    redTeamPoints += players[i].numPoints;
+                }
+                document.getElementById('redTeamNumPoints').innerHTML = redTeamPoints;
+
+                var redTeamPoints, isNotRedTeamPoints;
+                if(players[i].isRed == false && players[i].id == greenTeamPlayers[0].id)
+                {
+                    document.getElementById('greenP1-NumPoints').innerHTML = players[i].numPoints;
+                    greenTeamPoints = players[i].numPoints;
+                }
+
+                if(players[i].isRed == false && players[i].id == greenTeamPlayers[1].id)
+                {
+                    document.getElementById('greenP2-NumPoints').innerHTML = players[i].numPoints;
+                    greenTeamPoints += players[i].numPoints;
+                }
+                document.getElementById('greenTeamNumPoints').innerHTML = greenTeamPoints;
+                // grab teams numPoints to update scoreboard id with data
+            }
+        }  
     }
 }
 
@@ -48,6 +84,7 @@ var updateScoresAndHitEvents = function() {
             if (returnObj !== {}) {
                 //console.log("success, received non-empty object from /scores");
                 scoresAndHitEvents = returnObj;
+                firstPoll = false;
             }
             //console.log(scoresAndHitEvents);
         }
@@ -231,7 +268,7 @@ let startGame = function () {
 	// Load Players into Respective Teams
 	for (let i = 0; i < players.length; i++)
 	{
-		console.log(scoreboard.playerEntries[i]);
+		//console.log(scoreboard.playerEntries[i]);
 		
 
 		// Adding Players to Their Respective Teams' Array
@@ -240,8 +277,8 @@ let startGame = function () {
 		else
 			{greenTeamPlayers.push(players[i]);}
 	}
-	console.log(redTeamPlayers);
-	console.log(greenTeamPlayers);
+	//console.log(redTeamPlayers);
+	//console.log(greenTeamPlayers);
 	
 
     let post = JSON.stringify(scoreboard);
@@ -304,13 +341,17 @@ function playerActionScreen() {
 	
 	// Red Team
 	document.getElementById('redP1-Nickname').innerHTML = redTeamPlayers[0].nickname;
+    document.getElementById('redPlayer1_ID').innerHTML = redTeamPlayers[0].id;
 	document.getElementById('redP2-Nickname').innerHTML = redTeamPlayers[1].nickname;
-	document.getElementById('redP3-Nickname').innerHTML = redTeamPlayers[2].nickname;
+    document.getElementById('redPlayer2_ID').innerHTML = redTeamPlayers[1].id;
+	//document.getElementById('redP3-Nickname').innerHTML = redTeamPlayers[2].nickname;
 
 	// Green Team
 	document.getElementById('greenP1-Nickname').innerHTML = greenTeamPlayers[0].nickname;
+    document.getElementById('greenPlayer1_ID').innerHTML = greenTeamPlayers[0].id;
 	document.getElementById('greenP2-Nickname').innerHTML = greenTeamPlayers[1].nickname;
-	document.getElementById('greenP3-Nickname').innerHTML = greenTeamPlayers[2].nickname;
+    document.getElementById('greenPlayer2_ID').innerHTML = greenTeamPlayers[1].id;
+	//document.getElementById('greenP3-Nickname').innerHTML = greenTeamPlayers[2].nickname;
 
 	isPolling = true;
 	poll();	
