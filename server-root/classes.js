@@ -40,7 +40,7 @@ module.exports = {
             this.hitEvents.push(hitEvent);
 
             //this can be used to limit how many hit events we store
-            this.hitEvents = this.getRecentHitEvents(20);
+            this.hitEvents = this.getRecentHitEvents(10);
         }
     },
   };

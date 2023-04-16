@@ -179,7 +179,7 @@ function playSongList(array) {
     //console.log('in playSongList()')
     if (array.length > 0) {
         var music = new Audio(array[0]).play();
-        console.log('playing song ' + array[0]);
+        //console.log('playing song ' + array[0]);
     }
 }
 
@@ -335,7 +335,7 @@ function playerActionScreen() {
 	}, 1000);
 
 	// 2.) Initialize and Start "Live Log" of Events
-	
+    
 	// 3.) Initialize and Start (polling for) Scoreboard
 	
 	// Red Team
@@ -388,6 +388,27 @@ function playerActionScreen() {
 		poll();
 
 		//console.log("BING!");
+
+        if (!firstPoll)
+        {
+            for (let i = 0; i < scoresAndHitEvents.hitEvents.length; i++) {
+                let currShooter = scoresAndHitEvents.hitEvents[i].shooterId;
+                let currShot = scoresAndHitEvents.hitEvents[i].shotId;
+                let shooterName = "shooter_name";
+                let shotName = "shot_name";
+                for (let j = 0; j < scoresAndHitEvents.playerEntries.length; j++) {
+                    if (scoresAndHitEvents.playerEntries[j].id == currShooter)
+                        shooterName = scoresAndHitEvents.playerEntries[j].nickname;
+                    
+                    if (scoresAndHitEvents.playerEntries[j].id == currShot)
+                        shotName = scoresAndHitEvents.playerEntries[j].nickname;
+                }
+    
+                let actionString = shooterName + " shot " + shotName;
+                //console.log(actionString);
+                document.getElementById('he' + i).innerHTML = actionString;
+            }
+        }
 
 	}, 1000);
 
