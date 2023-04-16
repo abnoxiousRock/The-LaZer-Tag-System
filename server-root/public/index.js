@@ -179,7 +179,7 @@ function playSongList(array) {
     //console.log('in playSongList()')
     if (array.length > 0) {
         var music = new Audio(array[0]).play();
-        console.log('playing song ' + array[0]);
+        //console.log('playing song ' + array[0]);
     }
 }
 
@@ -405,7 +405,7 @@ function playerActionScreen() {
                 }
     
                 let actionString = shooterName + " shot " + shotName;
-                console.log(actionString);
+                //console.log(actionString);
                 document.getElementById('he' + i).innerHTML = actionString;
             }
         }
