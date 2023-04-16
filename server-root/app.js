@@ -45,6 +45,13 @@ app.get("/", function (req, res) {
 //app.get for getting the array of scores as a JSON obj
 app.get("/scores", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
+
+    let startIndex = 0;
+    if (scoreboard.hitEvents.length > 10) {
+        startIndex = startIndex - 10;
+    }
+    scoreboard.hitEvents =  scoreboard.hitEvents.slice(startIndex, scoreboard.hitEvents.length);
+
     res.end(JSON.stringify(scoreboard));
 });
 
