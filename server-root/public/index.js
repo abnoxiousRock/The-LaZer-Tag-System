@@ -63,6 +63,19 @@ function handleFormStartGame(event) {
             alert('Nickname required for ID: ' + elem.value);
             return;
         }
+
+        var duplicates = 0;
+        for (let j = 1; j <= NUMPLAYERS; j++) {
+            let elem3 = document.getElementById('id' + j);
+            let elem4 = document.getElementById('nickname' + j); 
+            if (elem.value == elem3.value) {
+                duplicates++;
+            }
+            if (duplicates > 1 && elem.value != '') {
+                alert('Please remove duplicate for ID: ' + elem.value);
+                return;
+            }
+        }
     }
 
     startTimer();
